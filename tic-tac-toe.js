@@ -26,7 +26,15 @@ function myFunction(){
 		
 		for (i=0;i<x.length;i++){
 			element = x[i];
+		if (element.textContent = "O"){
+			element.classList.remove("O");
+		}
+		else{
+			element.classList.remove("X");
+		}
+
   			element.innerHTML = "";
+		
   		}
   		myFunction();
 	}
