@@ -19,13 +19,16 @@ function myFunction(){
 
   	addEvents(x);
   	button.onclick = function(){
-
+		arr = ["","","","","","","","",""];
+		last = "O";
+		stats.innerHTML = "Move your mouse over a square and click to play an X or an O.";
+  		stats.classList.remove("you-won");
+		
 		for (i=0;i<x.length;i++){
 			element = x[i];
   			element.innerHTML = "";
-  			stats.innerHTML = "Move your mouse over a square and click to play an X or an O.";
-  			stats.classList.remove("you-won");
   		}
+  		myFunction();
 	}
 }
 
@@ -40,11 +43,9 @@ function addEvents(x){
 	e8= x[7];
 	e9= x[8];
 	
-
 	clickFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverOffFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
-	
 }
 
 
@@ -63,8 +64,6 @@ function clickHandler(element,box){
 			element.classList.add("O");
 			last = "O";
 			arr[box]=last;
-
-		
 		}
 		checkForWinner(arr);
 		element.onclick = null;
