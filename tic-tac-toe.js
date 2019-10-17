@@ -1,7 +1,7 @@
 window.onload = myFunction;
 var arr = ["","","","","","","","",""];
 var last = "O";
-var a = document.getElementById("status");
+
 
 function myFunction(){
 	var x = document.getElementById("board").children;
@@ -46,7 +46,7 @@ function clickHandler(element,box){
 			element.classList.add("X");
 			last = "X";
 			arr[box]=last;
-			checkForWinner(arr);
+			
 
 		}
 		else{
@@ -56,7 +56,8 @@ function clickHandler(element,box){
 			arr[box]=last;
 
 		
-		checkForWinner(arr);}
+		}
+		checkForWinner(arr);
 
 }
 
@@ -65,11 +66,10 @@ function checkForWinner(arr){
 	var lets =["X","O"];
 	var l;
 	var p = 0;
-	while (lets){
+	while (p<2){
 		l = lets[p];
 
-		if(
-			 ((arr[0]==l) && (arr[1]==l) && (arr[2]==l))
+		if(((arr[0]==l) && (arr[1]==l) && (arr[2]==l))
 			|| ((arr[3]==l) && (arr[4]==l) && (arr[5]==l))
 			|| ((arr[6]==l) && (arr[7]==l) && (arr[8]==l))
 			|| ((arr[0]==l) && (arr[3]==l) && (arr[6]==l))
@@ -85,9 +85,9 @@ function checkForWinner(arr){
 }
 
 function displayCongrats(l){
-	var a = document.getElementById("status");
-	a.innerHTML = "Congratulations! " + l + " is the Winner!";
-	a.classList.add("you-won");
+	var stat = document.getElementById("status");
+	stat.innerHTML = "Congratulations! " + l + " is the Winner!";
+	stat.classList.add("you-won");
 }
 
 function hoverHandler(element){
