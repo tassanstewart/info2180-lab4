@@ -5,6 +5,9 @@ var last = "O";
 
 function myFunction(){
 	var x = document.getElementById("board").children;
+	var button = document.getElementsByClassName("btn")[0];
+	var stats = document.getElementById("status");
+	var element;
 
 	var i;
 
@@ -12,10 +15,18 @@ function myFunction(){
 	for (i=0;i<x.length;i++){
 		element = x[i];
   		element.classList.add("square");
-  		//element.innerHTML = "";
   	}
 
   	addEvents(x);
+  	button.onclick = function(){
+
+		for (i=0;i<x.length;i++){
+			element = x[i];
+  			element.innerHTML = "";
+  			stats.innerHTML = "Move your mouse over a square and click to play an X or an O.";
+  			stats.classList.remove("you-won");
+  		}
+	}
 }
 
 function addEvents(x){
@@ -33,16 +44,14 @@ function addEvents(x){
 	clickFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverOffFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
-
-
-	
 	
 }
+
 
 function clickHandler(element,box){
 
 		if(last == "O"){
-			element.innerHTML = "X";
+		    element.innerHTML = "X";
 			element.classList.add("X");
 			last = "X";
 			arr[box]=last;
@@ -58,7 +67,7 @@ function clickHandler(element,box){
 		
 		}
 		checkForWinner(arr);
-
+		element.onclick = null;
 }
 
 
