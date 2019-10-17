@@ -1,6 +1,7 @@
 window.onload = myFunction;
-var arr = [];
-var last = "O"
+var arr = ["","","","","","","","",""];
+var last = "O";
+var a = document.getElementById("status");
 
 function myFunction(){
 	var x = document.getElementById("board").children;
@@ -28,7 +29,7 @@ function addEvents(x){
 	e8= x[7];
 	e9= x[8];
 	
-	
+
 	clickFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
 	hoverOffFunction(e1,e2,e3,e4,e5,e6,e7,e8,e9);
@@ -38,25 +39,56 @@ function addEvents(x){
 	
 }
 
-function clickHandler(element){
+function clickHandler(element,box){
 
 		if(last == "O"){
 			element.innerHTML = "X";
 			element.classList.add("X");
 			last = "X";
-			arr.push(last);
+			arr[box]=last;
+			checkForWinner(arr);
 
 		}
 		else{
-			element.innerHTML = "O"
+			element.innerHTML = "O";
 			element.classList.add("O");
 			last = "O";
-			arr.push(last);
+			arr[box]=last;
 
-		}
+		
+		checkForWinner(arr);}
 
 }
 
+
+function checkForWinner(arr){
+	var lets =["X","O"];
+	var l;
+	var p = 0;
+	while (lets){
+		l = lets[p];
+
+		if(
+			 ((arr[0]==l) && (arr[1]==l) && (arr[2]==l))
+			|| ((arr[3]==l) && (arr[4]==l) && (arr[5]==l))
+			|| ((arr[6]==l) && (arr[7]==l) && (arr[8]==l))
+			|| ((arr[0]==l) && (arr[3]==l) && (arr[6]==l))
+			|| ((arr[1]==l) && (arr[4]==l) && (arr[7]==l))
+			|| ((arr[2]==l) && (arr[5]==l) && (arr[8]==l))
+			|| ((arr[0]==l) && (arr[4]==l) && (arr[8]==l))
+			|| ((arr[2]==l) && (arr[4]==l) && (arr[6]==l))
+			){
+			displayCongrats(l);
+		}
+		p = p +1;
+	}
+}
+
+function displayCongrats(l){
+	var a = document.getElementById("status");
+	a.innerHTML = "Congratulations! " + l + " is the Winner!";
+	a.classList.add("you-won");
+}
 
 function hoverHandler(element){
 	element.classList.add("hover");
@@ -68,25 +100,31 @@ function hoverOffHandler(element){
 
 function clickFunction(a,b,c,d,e,f,g,h,i){
 	a.onclick = function(){
-		clickHandler(a);
+		clickHandler(a,0);
 	}
 	b.onclick = function(){
-		clickHandler(b);}
+		clickHandler(b,1);
+	}
 	c.onclick = function(){
-		clickHandler(c);}
+		clickHandler(c,2);
+	}
 	d.onclick = function(){
-		clcikHandler(d);}
+		clickHandler(d,3);
+	}
 	e.onclick = function(){
-		clickHandler(e);}
+		clickHandler(e,4);
+	}
 	f.onclick = function(){
-		clickHandler(f);
+		clickHandler(f,5);
 	}
 	g.onclick = function(){
-		clickHandler(g);}
+		clickHandler(g,6);
+	}
 	h.onclick = function(){
-		clickHandler(h);}
+		clickHandler(h,7);
+	}
 	i.onclick = function(){
-		clickHandler(i);
+		clickHandler(i,8);
 	}
 }
 
